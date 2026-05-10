@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Your Tutor — TutorNoble</title>
+  <meta name="description" content="Meet Noble Okyere-Kusi, your expert English and Science tutor with BSc Fire Safety and Disaster Management. Professional tutoring for JHS students in Ghana.">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/modal.css">
+  <style>
+    .tutor-hero {
+      background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+      color: #fff;
+      padding: 80px 5vw;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .tutor-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .tutor-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .tutor-profile-grid {
+      display: grid;
+      grid-template-columns: 350px 1fr;
+      gap: 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .tutor-photo-card {
+      background: var(--warm-white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      text-align: center;
+      position: sticky;
+      top: 100px;
+    }
+    .tutor-photo {
+      width: 100%;
+      height: 350px;
+      background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .tutor-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .tutor-name-card {
+      padding: 2rem;
+    }
+    .tutor-name-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .tutor-qualification {
+      color: var(--gold-light);
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 1.5rem;
+    }
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+    .social-facebook {
+      background: #1877f2;
+      color: #fff;
+    }
+    .social-facebook:hover {
+      background: #166fe5;
+      transform: translateY(-2px);
+    }
+    .social-instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+    .social-instagram:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(225, 48, 108, 0.3);
+    }
+    .tutor-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .tutor-section {
+      background: var(--warm-white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    .tutor-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--forest);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tutor-section h3 .icon {
+      font-size: 28px;
+    }
+    .tutor-section p {
+      line-height: 1.8;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+    }
+    .tutor-section ul {
+      list-style: none;
+      padding: 0;
+    }
+    .tutor-section li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .tutor-section li:last-child {
+      border-bottom: none;
+    }
+    .tutor-section li::before {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: var(--gold-light);
+      color: var(--cocoa);
+      border-radius: 50%;
+      font-size: 14px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .expertise-item {
+      background: var(--cream);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1.5px solid var(--border);
+      text-align: center;
+    }
+    .expertise-icon {
+      font-size: 32px;
+      margin-bottom: 0.75rem;
+    }
+    .expertise-title {
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .expertise-desc {
+      font-size: 14px;
+      color: var(--text-soft);
+    }
+    .cta-tutor {
+      background: var(--gold);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      border-radius: 20px;
+      margin-top: 2rem;
+    }
+    .cta-tutor h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--cocoa);
+      margin-bottom: 1rem;
+    }
+    .cta-tutor p {
+      color: var(--text-mid);
+      margin-bottom: 2rem;
+      font-size: 16px;
+    }
+    @media (max-width: 768px) {
+      .tutor-profile-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .tutor-photo-card {
+        position: static;
+      }
+      .expertise-grid {
+        grid-template-columns: 1fr;
+      }
+      .tutor-section {
+        padding: 2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="kente-strip"></div>
+<nav id="site-nav"></nav>
+
+<div class="tutor-hero">
+  <div class="tutor-hero-content fade-up">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold-light);margin-bottom:0.75rem">Meet Your Tutor</div>
+    <h1 style="font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,48px);font-weight:900;margin-bottom:1rem">Noble Okyere-Kusi</h1>
+    <p style="font-size:18px;color:rgba(255,255,255,0.8);max-width:600px;margin:0 auto">Expert English and Science tutor dedicated to helping JHS students excel with personalized attention and proven teaching methods.</p>
+  </div>
+</div>
+
+<div class="tutor-profile-grid" style="padding:60px 5vw">
+  <div class="tutor-photo-card fade-up" style="transition-delay:.1s">
+    <div class="tutor-photo">
+      <img src="tutor-profile.png" alt="Noble Okyere-Kusi - Tutor Profile">
+    </div>
+    <div class="tutor-name-card">
+      <h2>Noble Okyere-Kusi</h2>
+      <div class="tutor-qualification">BSc Fire Safety and Disaster Management</div>
+      <div style="color:var(--text-soft);font-size:14px;margin-bottom:1rem">Tutor | English & Science Specialist</div>
+      
+      <div class="social-links">
+        <a href="https://www.facebook.com/share/15qAMnrV1vY/?mibextid=wwXIfr" target="_blank" class="social-link social-facebook">
+          <span>📘</span> Facebook
+        </a>
+        <a href="https://www.instagram.com/nobleman163?igsh=MW04eWc4MW4ybDgxMw%3D%3D&utm_source=qr" target="_blank" class="social-link social-instagram">
+          <span>📷</span> Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="tutor-content">
+    <div class="tutor-section fade-up" style="transition-delay:.2s">
+      <h3><span class="icon">👨‍🏫</span> About Me</h3>
+      <p>Hello! I'm Noble Okyere-Kusi, a passionate educator with a strong background in Fire Safety and Disaster Management. My academic training has given me unique insights into structured learning, safety, and effective communication - skills that translate perfectly into tutoring.</p>
+      <p>I specialize in teaching English Language and Integrated Science to JHS 1-3 students, helping them build confidence and achieve academic excellence. My approach combines rigorous academic standards with personalized attention to each student's learning style.</p>
+      <p>With years of experience in education, I understand the challenges students face and have developed effective strategies to make complex concepts simple and engaging. I believe every student has the potential to excel with the right guidance and support.</p>
+    </div>
+
+    <div class="tutor-section fade-up" style="transition-delay:.3s">
+      <h3><span class="icon">🎯</span> Teaching Philosophy</h3>
+      <p>My teaching philosophy is built on three core principles:</p>
+      <ul>
+        <li><strong>Personalized Learning:</strong> Every student learns differently. I adapt my teaching methods to match each student's unique learning style and pace.</li>
+        <li><strong>Building Confidence:</strong> Academic success starts with self-belief. I create a supportive environment where students feel comfortable asking questions and making mistakes.</li>
+        <li><strong>Practical Application:</strong> I connect classroom concepts to real-world situations, making learning more relevant and memorable for students.</li>
+      </ul>
+    </div>
+
+    <div class="tutor-section fade-up" style="transition-delay:.4s">
+      <h3><span class="icon">📚</span> Subject Expertise</h3>
+      
+      <div class="expertise-grid">
+        <div class="expertise-item">
+          <div class="expertise-icon">📝</div>
+          <div class="expertise-title">English Language</div>
+          <div class="expertise-desc">Grammar, Composition, Comprehension, Literature, BECE Preparation</div>
+        </div>
+        <div class="expertise-item">
+          <div class="expertise-icon">🔬</div>
+          <div class="expertise-title">Integrated Science</div>
+          <div class="expertise-desc">Physics, Chemistry, Biology, Practical Experiments, BECE Focus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tutor-section fade-up" style="transition-delay:.5s">
+      <h3><span class="icon">🏆</span> What Makes Me Different</h3>
+      <ul>
+        <li>Strong academic background with BSc in Fire Safety and Disaster Management</li>
+        <li>Specialized focus on JHS curriculum and BECE preparation</li>
+        <li>Both online and in-person tutoring options available</li>
+        <li>Flexible scheduling to accommodate student needs</li>
+        <li>Regular progress updates for parents</li>
+        <li>Affordable rates with no hidden fees</li>
+      </ul>
+    </div>
+
+    <div class="cta-tutor fade-up" style="transition-delay:.6s">
+      <h3>Ready to Start Learning?</h3>
+      <p>Let's work together to help your child achieve academic excellence. Book a session today and see the difference personalized tutoring can make.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/233535544354?text=Hi%2C%20I%27d%20like%20to%20book%20a%20session%20with%20Noble" class="btn-forest" target="_blank">
+          <span>💬</span> Book on WhatsApp →
+        </a>
+        <a href="#" class="btn-forest" onclick="openModal();return false">Book on website →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id="site-footer"></footer>
+<div class="kente-strip"></div>
+<div id="site-modal"></div>
+
+<script src="../js/main.js?v=2"></script>
+<script src="../js/layout.js?v=2"></script>
+<script>
+injectLayout('../');
+</script>
+</body>
+</html>

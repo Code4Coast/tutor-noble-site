@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Payment — TutorNoble</title>
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/modal.css">
+<style>
+body{background:var(--cream)}
+.progress-wrap{background:#fff;border-bottom:1px solid var(--border);padding:1rem 5vw}
+.progress-steps{display:flex;align-items:center;max-width:560px;margin:0 auto}
+.step-dot{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;position:relative}
+.step-dot::after{content:'';position:absolute;top:12px;left:50%;width:100%;height:2px;background:var(--border);z-index:0}
+.step-dot:last-child::after{display:none}
+.dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--border);background:#fff;font-size:11px;font-weight:500;display:flex;align-items:center;justify-content:center;color:var(--text-soft);position:relative;z-index:1;transition:all .3s}
+.dot.active{border-color:var(--forest-mid);background:var(--forest-mid);color:#fff}
+.dot.done{border-color:var(--forest-mid);background:var(--mint-pale);color:var(--forest)}
+.step-lbl{font-size:11px;color:var(--text-soft);text-align:center}
+.step-lbl.active{color:var(--forest);font-weight:600}
+
+.pay-wrap{max-width:580px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.screen{display:none;animation:fadeUp .35s ease}
+.screen.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+.booking-summary{background:var(--forest);border-radius:16px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;color:#fff;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+.summary-label{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+.summary-val{font-size:15px;font-weight:500}
+.summary-price{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:#9FE1CB;line-height:1}
+
+.pay-screen-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--forest);margin-bottom:6px}
+.pay-screen-sub{font-size:14px;color:var(--text-soft);margin-bottom:1.5rem;line-height:1.6}
+
+.details-box{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1.25rem}
+.details-header{background:var(--mint-pale);padding:.7rem 1.25rem;font-size:12px;font-weight:600;color:var(--forest);text-transform:uppercase;letter-spacing:.06em}
+.details-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 1.25rem;border-bottom:1px solid var(--border);gap:12px}
+.details-row:last-child{border-bottom:none}
+.details-key{font-size:13px;color:var(--text-soft);flex-shrink:0}
+.details-value{font-size:14px;font-weight:600;color:var(--text);text-align:right}
+
+.instruction-box{background:#fff;border-radius:12px;padding:1rem 1.25rem;margin-bottom:1.25rem;border:1px solid var(--border)}
+.instruction-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px}
+.instruction-list{padding-left:1.2rem;font-size:13px;color:var(--text-soft);line-height:2.2}
+
+.upload-area{border:1.5px dashed var(--border);border-radius:10px;padding:1.5rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:#fafaf8}
+.upload-area:hover{border-color:var(--forest-mid);background:var(--mint-pale)}
+.upload-text{font-size:13px;color:var(--text-soft)}
+.upload-text span{color:var(--forest);font-weight:600}
+#file-input{display:none}
+.file-chosen{font-size:12px;color:var(--forest);margin-top:6px;font-weight:600}
+
+.btn-primary{width:100%;padding:14px;background:var(--forest);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary:hover{background:var(--forest-mid)}
+.btn-secondary{width:100%;padding:12px;background:transparent;color:var(--text-soft);border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;margin-top:10px;transition:border-color .2s}
+.btn-secondary:hover{border-color:var(--text-soft)}
+
+/* SUCCESS */
+.success-circle{width:80px;height:80px;border-radius:50%;background:var(--mint-pale);display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 1.5rem;animation:popIn .5s cubic-bezier(0.34,1.56,0.64,1)}
+@keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+.success-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:var(--forest);text-align:center;margin-bottom:8px}
+.success-sub{font-size:14px;color:var(--text-soft);text-align:center;line-height:1.7;margin-bottom:2rem}
+
+.msg-preview{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1rem}
+.msg-header{padding:.75rem 1.1rem;border-bottom:1px solid var(--border);font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px}
+.msg-header.student{background:var(--mint-pale);color:var(--forest)}
+.msg-header.tutor{background:#E6F1FB;color:#185FA5}
+.msg-tag{font-size:10px;padding:2px 7px;border-radius:4px;margin-left:auto}
+.msg-tag.sms{background:#e0e7ff;color:#4338ca}
+.msg-tag.email{background:#fce7f3;color:#9d174d}
+.msg-body{padding:1rem 1.1rem;font-size:13px;color:var(--text);line-height:1.75;white-space:pre-line}
+</style>
+</head>
+<body>
+<div class="kente-strip"></div>
+<nav id="site-nav"></nav>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="step-dot"><div class="dot done" id="d1">✓</div><span class="step-lbl">Booking</span></div>
+    <div class="step-dot"><div class="dot active" id="d2">2</div><span class="step-lbl active" id="l2">Payment</span></div>
+    <div class="step-dot"><div class="dot" id="d3">3</div><span class="step-lbl" id="l3">Confirm</span></div>
+    <div class="step-dot"><div class="dot" id="d4">4</div><span class="step-lbl" id="l4">Done</span></div>
+  </div>
+</div>
+
+<div class="pay-wrap">
+
+  <!-- SCREEN 1: PAYMENT DETAILS -->
+  <div class="screen active" id="s-details">
+    <div class="booking-summary">
+      <div>
+        <div class="summary-label">Your session</div>
+        <div class="summary-val" id="session-desc">English · 1 Hour · Online</div>
+        <div style="font-size:12px;opacity:.6;margin-top:4px">Details confirmed at booking</div>
+      </div>
+      <div style="text-align:right">
+        <div class="summary-price" id="session-price">₵30</div>
+        <div style="font-size:12px;opacity:.65;margin-top:2px">≈ $3.00 USD</div>
+      </div>
+    </div>
+
+    <!-- MOMO DETAILS (shown by default, swapped by JS if bank) -->
+    <div id="momo-block">
+      <div class="pay-screen-title">Pay via MTN MoMo</div>
+      <p class="pay-screen-sub">Send exactly <strong id="amount-display">₵30.00</strong> to the number below, then click "I've paid" to confirm your session.</p>
+      <div class="details-box">
+        <div class="details-header">📱 MTN Mobile Money</div>
+        <div class="details-row"><span class="details-key">MoMo Number</span><span class="details-value">0553118403</span><button class="copy-btn" onclick="copyText(this,'0553118403')">Copy</button></div>
+        <div class="details-row"><span class="details-key">Account Name</span><span class="details-value">Noble Okyere-Kusi</span></div>
+        <div class="details-row"><span class="details-key">Amount</span><span class="details-value" id="momo-amount" style="color:var(--forest-light);font-size:16px">₵30.00</span><button class="copy-btn" onclick="copyText(this,'30')">Copy</button></div>
+        <div class="details-row"><span class="details-key">Reference</span><span class="details-value" id="ref-display">EB-REF-0001</span><button class="copy-btn" id="ref-copy" onclick="copyText(this,'EB-REF-0001')">Copy</button></div>
+      </div>
+      <div class="instruction-box">
+        <div class="instruction-title">How to pay via *170#</div>
+        <ol class="instruction-list">
+          <li>Dial <strong>*170#</strong> or open your MTN MoMo app</li>
+          <li>Select <strong>Transfer Money → MoMo User</strong></li>
+          <li>Enter number: <strong>024 XXX XXXX</strong></li>
+          <li>Enter amount: <strong>₵30.00 / US$3.00</strong></li>
+          <li>Reference / note: <strong id="ref-hint">EB-REF-0001</strong></li>
+          <li>Enter your PIN to confirm</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- BANK DETAILS (hidden by default) -->
+    <div id="bank-block" style="display:none">
+      <div class="pay-screen-title">Pay via Bank Transfer</div>
+      <p class="pay-screen-sub">Transfer exactly <strong id="bank-amount">₵30.00</strong> to account below, then click "I've paid" to confirm.</p>
+      <div class="details-box">
+        <div class="details-header">🏦 Bank Account</div>
+        <div class="details-row"><span class="details-key">Bank</span><span class="details-value">GCB (Ghana Commercial Bank)</span></div>
+        <div class="details-row"><span class="details-key">Account Name</span><span class="details-value">Noble Okyere-Kusi</span></div>
+        <div class="details-row"><span class="details-key">Account Number</span><span class="details-value">2011250076009</span><button class="copy-btn" onclick="copyText(this,'2011250076009')">Copy</button></div>
+        <div class="details-row"><span class="details-key">Branch</span><span class="details-value">Sunyani Main Branch</span></div>
+        <div class="details-row"><span class="details-key">Amount</span><span class="details-value" id="bank-amount-display" style="color:var(--forest-light);font-size:16px">₵30.00</span><button class="copy-btn" onclick="copyText(this,'30')">Copy</button></div>
+        <div class="details-row"><span class="details-key">Narration / Ref</span><span class="details-value" id="bank-ref-display">EB-REF-0001</span><button class="copy-btn" id="bank-ref-copy" onclick="copyText(this,'EB-REF-0001')">Copy</button></div>
+      </div>
+      <div class="notice-amber">⚠️ Use <strong id="bank-ref-notice">EB-REF-0001</strong> as your bank narration. Bank transfers may take a few hours — we'll confirm once payment is verified.</div>
+    </div>
+
+    <div class="notice-green" style="margin-bottom: 1.5rem;">
+      📸 <strong>Important:</strong> After making payment, please send a screenshot of your payment confirmation to the tutor on WhatsApp. This helps us verify your payment quickly and confirm your booking.
+    </div>
+
+    <button class="btn-primary" onclick="sendToWhatsApp()">✅ I've paid — confirm my booking →</button>
+    <button class="btn-secondary" onclick="history.back()">← Go back</button>
+  </div>
+
+  <!-- SCREEN 2: CONFIRM FORM -->
+  <div class="screen" id="s-confirm">
+    <div class="pay-screen-title">Confirm your payment</div>
+    <p class="pay-screen-sub">Fill in your details and payment proof so we can verify and lock in your session.</p>
+
+    <div class="form-group">
+      <label class="form-label">Full name</label>
+      <input class="form-input" id="c-name" type="text" placeholder="e.g. Ama Mensah">
+    </div>
+    <div class="row-2">
+      <div class="form-group">
+        <label class="form-label">Phone number</label>
+        <input class="form-input" id="c-phone" type="tel" placeholder="024 XXX XXXX">
+        <div class="input-hint">SMS confirmation sent here</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input class="form-input" id="c-email" type="email" placeholder="ama@gmail.com">
+        <div class="input-hint">Email confirmation sent here</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Transaction reference / ID</label>
+      <input class="form-input" id="c-txn" type="text" placeholder="e.g. 1234567890 or MoMo transaction ID">
+      <div class="input-hint">From your MoMo or bank payment confirmation</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Upload payment screenshot <span style="color:var(--text-soft);font-weight:400">(optional but recommended)</span></label>
+      <div class="upload-area" onclick="document.getElementById('file-input').click()">
+        <div style="font-size:28px;margin-bottom:6px">📎</div>
+        <div class="upload-text"><span>Click to upload</span> your payment screenshot</div>
+        <div class="upload-text" style="font-size:11px;margin-top:4px">PNG or JPG up to 5MB</div>
+        <div class="file-chosen" id="file-chosen" style="display:none"></div>
+      </div>
+      <input type="file" id="file-input" accept="image/*" onchange="fileChosen(this)">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Notes for your tutor <span style="color:var(--text-soft);font-weight:400">(optional)</span></label>
+      <textarea class="form-textarea" id="c-notes" placeholder="e.g. My child is in JHS 2 and struggles with essay writing."></textarea>
+    </div>
+
+    <button class="btn-primary" onclick="submitConfirm()">Submit confirmation →</button>
+    <button class="btn-secondary" onclick="goTo('s-details',2)">← Go back</button>
+  </div>
+
+  <!-- SCREEN 3: SUCCESS -->
+  <div class="screen" id="s-success">
+    <div style="text-align:center;padding-top:1rem">
+      <div class="success-circle">🎉</div>
+      <div class="success-title">Booking confirmed!</div>
+      <p class="success-sub">We've received your payment confirmation.<br>Your tutor will verify and you'll be all set.<br>Check your phone and email for details.</p>
+    </div>
+    <div style="font-size:12px;font-weight:600;color:var(--text-soft);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">📨 Messages sent automatically</div>
+
+    <div class="msg-preview">
+      <div class="msg-header student">
+        <span>💬</span> To: Student
+        <span class="msg-tag sms" style="margin-left:auto">SMS</span>
+        <span class="msg-tag email">Email</span>
+      </div>
+      <div class="msg-body" id="student-msg">Hi there 👋
+
+Your TutorNoble session is confirmed!
+
+📚 Subject: English
+⏱ Duration: 1 Hour
+📍 Mode: Online (link to follow)
+
+💰 Amount: ₵30.00
+🔖 Reference: EB-REF-0001
+
+Your tutor will verify and send your Google Meet link shortly.
+— TutorNoble Team</div>
+    </div>
+
+    <div class="msg-preview">
+      <div class="msg-header tutor">
+        <span>🔔</span> To: Tutor (alert)
+        <span class="msg-tag sms" style="margin-left:auto">SMS</span>
+        <span class="msg-tag email">Email</span>
+      </div>
+      <div class="msg-body" id="tutor-msg">🔔 New Booking — TutorNoble
+
+Student: —
+Phone: —
+Subject: English · 1 Hour · Online
+
+Payment: ₵30.00 via MTN MoMo
+Txn Ref: —
+Screenshot: Attached ✅
+
+👉 Please verify payment and send student their Google Meet link.
+— TutorNoble System</div>
+    </div>
+
+    <div style="background:var(--mint-pale);border:1px solid var(--mint);border-radius:10px;padding:.9rem 1rem;display:flex;gap:10px;align-items:flex-start;margin-top:1rem">
+      <span>✅</span>
+      <span style="font-size:13px;color:var(--forest)">Once your tutor verifies payment, you'll receive a second message with your Google Meet link or venue address.</span>
+    </div>
+
+    <a href="../index.html" class="btn-primary" style="margin-top:1.5rem;text-decoration:none;justify-content:center">← Back to home</a>
+  </div>
+
+</div><!-- /pay-wrap -->
+
+<footer id="site-footer"></footer>
+<div class="kente-strip"></div>
+
+<script src="../js/main.js?v=2"></script>
+<script src="../js/layout.js?v=2"></script>
+<script>
+
+// Global function - outside DOMContentLoaded so button can access it
+function testButton() {
+  alert('Button is working!');
+  console.log('Test button clicked');
+}
+
+function sendToWhatsApp() {
+  console.log('sendToWhatsApp called');
+  
+  // Read URL params
+  const params = new URLSearchParams(window.location.search);
+  const method = params.get('method') || 'momo';
+  const studentName = decodeURIComponent(params.get('name') || '');
+  const subject = decodeURIComponent(params.get('subject') || 'English');
+  const grade = decodeURIComponent(params.get('grade') || 'JHS 1');
+  const format = decodeURIComponent(params.get('format') || 'online');
+  const location = decodeURIComponent(params.get('location') || 'ghana');
+  const hours = parseFloat(params.get('hours')) || 1;
+  const ref = 'EB-' + Math.random().toString(36).substring(2,8).toUpperCase();
+  
+  console.log('WhatsApp params:', { method, studentName, subject, grade, format, location, hours });
+  
+  // Create comprehensive WhatsApp message with all booking data
+  const whatsappMessage = `Hello TutorNoble! 📚\n\nI've made payment for a tutoring session:\n\n👤 Name: ${studentName}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${hours === 1 ? '1 hour' : `${hours} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n\n💳 Payment Details:\n💰 Amount: ₵${(hours * 30).toFixed(2)}\n💳 Method: ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}\n🔖 Reference: ${ref}\n\n📸 I will send my payment confirmation screenshot to verify the payment.\n\nPlease confirm my booking and send the meeting details. Thank you!`;
+  
+  console.log('WhatsApp message:', whatsappMessage);
+  
+  // Open WhatsApp with pre-filled message
+  const whatsappUrl = `https://wa.me/233535544354?text=${encodeURIComponent(whatsappMessage)}`;
+  window.open(whatsappUrl, '_blank');
+}
+// Wait for DOM to be ready
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Payment page DOM loaded');
+  
+  injectLayout('../');
+
+  // Read URL params
+  const params = new URLSearchParams(window.location.search);
+  const method = params.get('method') || 'momo';
+  const studentName = decodeURIComponent(params.get('name') || '');
+  const subject = decodeURIComponent(params.get('subject') || 'English');
+  const grade = decodeURIComponent(params.get('grade') || 'JHS 1');
+  const format = decodeURIComponent(params.get('format') || 'online');
+  const location = decodeURIComponent(params.get('location') || 'ghana');
+  const hours = parseFloat(params.get('hours')) || 1;
+  const ref = 'EB-' + Math.random().toString(36).substring(2,8).toUpperCase();
+  
+  console.log('Payment params:', { method, studentName, subject, grade, format, location, hours });
+
+// Update payment displays based on hours and location
+if (hours > 0) {
+  // Correct pricing: 30min = ₵15/US$1.50, 1hr = ₵30/US$3.00
+  const cediPrice = hours * 30;
+  const usdPrice = hours * 3;
+  
+  // Update session description
+  const sessionDesc = document.getElementById('session-desc');
+  console.log('Session desc element:', sessionDesc);
+  if (sessionDesc) {
+    const descText = `${subject} · ${hours === 1 ? '1 Hour' : `${hours} Hours`} · ${format === 'online' ? 'Online' : 'In-person'}`;
+    console.log('Setting session description to:', descText);
+    sessionDesc.textContent = descText;
+  }
+  
+  // Update amount displays
+  const amountDisplay = document.getElementById('amount-display');
+  const sessionPrice = document.getElementById('session-price');
+  
+  console.log('Price elements found:', { amountDisplay, sessionPrice });
+  console.log('Calculated prices:', { cediPrice, usdPrice });
+  
+  if (amountDisplay) {
+    amountDisplay.innerHTML = `<strong>₵${cediPrice.toFixed(2)}</strong>`;
+    console.log('Updated amount display');
+  }
+  if (sessionPrice) {
+    sessionPrice.innerHTML = `₵${cediPrice.toFixed(2)} / US$${usdPrice.toFixed(2)}`;
+    console.log('Updated session price');
+  }
+  
+  // Update MoMo details
+  const momoAmount = document.getElementById('momo-amount');
+  if (momoAmount) {
+    momoAmount.innerHTML = `<strong>₵${cediPrice.toFixed(2)}</strong>`;
+    console.log('Updated MoMo amount');
+  }
+  
+  // Update bank details
+  const bankAmountDisplay = document.getElementById('bank-amount-display');
+  if (bankAmountDisplay) {
+    bankAmountDisplay.innerHTML = `<strong>₵${cediPrice.toFixed(2)}</strong>`;
+    console.log('Updated bank amount');
+  }
+  
+  // Update USD equivalent in summary
+  const usdEquivalent = document.querySelector('.booking-summary div[style*="text-align:right"] div[style*="font-size:12px"]');
+  if (usdEquivalent) {
+    usdEquivalent.textContent = `≈ $${usdPrice.toFixed(2)} USD`;
+    console.log('Updated USD equivalent');
+  }
+  
+  // Update subject displays in messages
+  const studentMsg = document.getElementById('student-msg');
+  const tutorMsg = document.getElementById('tutor-msg');
+  
+  if (studentMsg) {
+    studentMsg.innerHTML = `Hi there 👋
+
+Your TutorNoble session is confirmed!
+
+📚 Subject: ${subject}
+⏱ Duration: ${hours === 1 ? '1 Hour' : `${hours} Hours`}
+📍 Mode: ${format === 'online' ? 'Online (link to follow)' : 'In-person'}
+
+💰 Amount: ₵${cediPrice.toFixed(2)}
+🔖 Reference: ${ref}
+
+Your tutor will verify and send your Google Meet link shortly.
+— TutorNoble Team`;
+  }
+  
+  if (tutorMsg) {
+    tutorMsg.innerHTML = `🔔 New Booking — TutorNoble
+
+Student: ${studentName}
+Phone: —
+Subject: ${subject} · ${hours === 1 ? '1 Hour' : `${hours} Hours`} · ${format === 'online' ? 'Online' : 'In-person'}
+
+Payment: ₵${cediPrice.toFixed(2)} via ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}
+Txn Ref: —
+Screenshot: Attached ✅
+
+👉 Please verify payment and send student their Google Meet link.
+— TutorNoble System`;
+  }
+}
+
+document.getElementById('momo-block').style.display = method === 'bank' ? 'none' : 'block';
+document.getElementById('bank-block').style.display = method === 'bank' ? 'block' : 'none';
+['ref-display','ref-hint','bank-ref-display','bank-ref-notice'].forEach(id => {
+  if(document.getElementById(id)) document.getElementById(id).textContent = ref;
+});
+['ref-copy','bank-ref-copy'].forEach(id => {
+  const el = document.getElementById(id);
+  if(el) el.setAttribute('onclick', `copyText(this,'${ref}')`);
+});
+if(studentName) document.getElementById('c-name').value = studentName;
+
+function setStep(n) {
+  for(let i=2;i<=4;i++){
+    const d=document.getElementById('d'+i), l=document.getElementById('l'+i);
+    d.className='dot'; if(l) l.className='step-lbl';
+    if(i<n){d.classList.add('done');d.textContent='✓';}
+    else if(i===n){d.classList.add('active');d.textContent=i;if(l)l.classList.add('active');}
+    else d.textContent=i;
+  }
+}
+
+function goTo(screenId, step) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+  setStep(step);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function fileChosen(input) {
+  const fc = document.getElementById('file-chosen');
+  if(input.files.length > 0){ fc.textContent='✅ '+input.files[0].name; fc.style.display='block'; }
+}
+
+
+function submitConfirm() {
+  const name = document.getElementById('c-name').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+  const email = document.getElementById('c-email').value.trim();
+  const txn = document.getElementById('c-txn').value.trim();
+  if(!name||!phone||!email||!txn){ alert('Please fill in all required fields.'); return; }
+  const notes = document.getElementById('c-notes').value.trim();
+  
+  // Update message previews
+  document.getElementById('student-msg').textContent =
+`Hi ${name} 👋\n\nYour TutorNoble session is confirmed!\n\n📚 Subject: ${subject}\n⏱ Duration: ${hours === 1 ? '1 Hour' : `${hours} Hours`}\n📍 Mode: ${format === 'online' ? 'Online (link to follow)' : 'In-person'}\n\n💰 Amount: ₵${(hours * 30).toFixed(2)}\n🔖 Reference: ${ref}\n\nYour tutor will verify and send your Google Meet link shortly.\n— TutorNoble Team`;
+  document.getElementById('tutor-msg').textContent =
+`🔔 New Booking — TutorNoble\n\nStudent: ${name}\nPhone: ${phone}\nSubject: ${subject} · ${hours === 1 ? '1 Hour' : `${hours} Hours`} · ${format === 'online' ? 'Online' : 'In-person'}\n\nPayment: ₵${(hours * 30).toFixed(2)} via ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}\nTxn Ref: ${txn}\nScreenshot: Attached ✅\n${notes?'\nNotes: "'+notes+'"':''}\n\n👉 Please verify payment and send student their Google Meet link.\n— TutorNoble System`;
+  
+  goTo('s-success', 4);
+  
+  // After showing success, redirect to WhatsApp after a delay
+  setTimeout(() => {
+    const whatsappMessage = `Hello TutorNoble! 📚\n\nI've completed my payment for a tutoring session:\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${hours === 1 ? '1 hour' : `${hours} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n💳 Payment: ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}\n💰 Amount: ₵${(hours * 30).toFixed(2)}\n🔖 Reference: ${ref}\n📋 Transaction ID: ${txn}\n${notes ? '\n📝 Notes: ' + notes : ''}\n\nPlease confirm and send the meeting details. Thank you!`;
+    
+    const whatsappUrl = `https://wa.me/233535544354?text=${encodeURIComponent(whatsappMessage)}`;
+    window.open(whatsappUrl, '_blank');
+  }, 3000); // 3 second delay to let user see the success message
+}
+}); // Close DOMContentLoaded
+</script>
+</body>
+</html>

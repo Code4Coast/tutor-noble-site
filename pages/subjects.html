@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subjects — TutorNoble</title>
+<meta name="description" content="Full English and Integrated Science curriculum for JHS 1, 2 and 3 students in Ghana.">
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/modal.css">
+<style>
+.page-hero{background:var(--forest);padding:64px 5vw 72px;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;background:rgba(192,125,42,0.07)}
+.page-hero-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold-light);margin-bottom:0.75rem}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,56px);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.1;margin-bottom:0.75rem}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7}
+
+.subject-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:3rem}
+.subj-banner{border-radius:16px;overflow:hidden;border:1.5px solid var(--border)}
+.subj-banner-top{padding:2rem;display:flex;align-items:center;gap:1rem}
+.subj-emoji{font-size:40px}
+.subj-banner-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff}
+.subj-banner-sub{font-size:13px;color:rgba(255,255,255,0.6);margin-top:2px}
+.subj-banner-body{background:var(--warm-white);padding:1.5rem}
+
+.grade-tabs{display:flex;gap:8px;margin-bottom:1.5rem;flex-wrap:wrap}
+.grade-tab{padding:7px 16px;border-radius:100px;border:1.5px solid var(--border);font-size:13px;font-weight:600;color:var(--text-mid);cursor:pointer;background:var(--warm-white);transition:all .2s}
+.grade-tab.active,.grade-tab:hover{background:var(--forest);color:#fff;border-color:var(--forest)}
+
+.topic-grid{display:none;grid-template-columns:1fr 1fr;gap:8px}
+.topic-grid.active{display:grid}
+.topic-chip{background:var(--cream);border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--text-mid);display:flex;align-items:center;gap:6px}
+.topic-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0}
+
+.bece-strip{background:var(--gold-pale);border:1.5px solid var(--gold-light);border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:center;gap:10px;margin-top:1rem}
+.bece-strip-text{font-size:13px;color:var(--cocoa);line-height:1.5}
+
+@media(max-width:768px){.subject-hero-grid{grid-template-columns:1fr}.topic-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="kente-strip"></div>
+<nav id="site-nav"></nav>
+
+<div class="page-hero">
+  <div class="page-hero-tag">What we teach</div>
+  <h1>Two subjects.<br>Endless possibilities.</h1>
+  <p>Our tutors follow the exact Ghana Education Service JHS curriculum — every topic your child needs to excel and ace their BECE.</p>
+</div>
+
+<section style="background:var(--cream)">
+  <div class="fade-up">
+    <div class="section-tag">Curriculum</div>
+    <div class="section-title">Choose a subject — pick a grade.</div>
+    <p class="section-sub">Click the grade tabs to see exactly what topics are covered in each JHS year.</p>
+  </div>
+
+  <div class="subject-hero-grid fade-up" style="margin-top:2.5rem">
+
+    <!-- ENGLISH -->
+    <div class="subj-banner">
+      <div class="subj-banner-top" style="background:var(--forest)">
+        <div class="subj-emoji">📖</div>
+        <div>
+          <div class="subj-banner-name">English Language</div>
+          <div class="subj-banner-sub">Communication · Confidence · Expression</div>
+        </div>
+      </div>
+      <div class="subj-banner-body">
+        <div class="grade-tabs">
+          <div class="grade-tab active" onclick="switchGrade('eng',1,this)">JHS 1</div>
+          <div class="grade-tab" onclick="switchGrade('eng',2,this)">JHS 2</div>
+          <div class="grade-tab" onclick="switchGrade('eng',3,this)">JHS 3</div>
+        </div>
+        <div class="topic-grid active" id="eng-1">
+          <div class="topic-chip">Parts of speech</div>
+          <div class="topic-chip">Sentence construction</div>
+          <div class="topic-chip">Reading comprehension</div>
+          <div class="topic-chip">Paragraph writing</div>
+          <div class="topic-chip">Nouns &amp; pronouns</div>
+          <div class="topic-chip">Tenses — simple</div>
+          <div class="topic-chip">Oral storytelling</div>
+          <div class="topic-chip">Vocabulary building</div>
+          <div class="topic-chip">Punctuation</div>
+          <div class="topic-chip">Short composition</div>
+        </div>
+        <div class="topic-grid" id="eng-2">
+          <div class="topic-chip">Essay writing types</div>
+          <div class="topic-chip">Letter writing</div>
+          <div class="topic-chip">Figures of speech</div>
+          <div class="topic-chip">Comprehension passages</div>
+          <div class="topic-chip">Tenses — continuous</div>
+          <div class="topic-chip">Reported speech</div>
+          <div class="topic-chip">Debate &amp; discussion</div>
+          <div class="topic-chip">Synonyms &amp; antonyms</div>
+          <div class="topic-chip">Speech sounds</div>
+          <div class="topic-chip">Literature — prose</div>
+        </div>
+        <div class="topic-grid" id="eng-3">
+          <div class="topic-chip">BECE essay formats</div>
+          <div class="topic-chip">Formal &amp; informal letters</div>
+          <div class="topic-chip">Summary writing</div>
+          <div class="topic-chip">Comprehension — timed</div>
+          <div class="topic-chip">Advanced grammar</div>
+          <div class="topic-chip">Oral exam prep</div>
+          <div class="topic-chip">Literature — poetry</div>
+          <div class="topic-chip">Argumentative writing</div>
+          <div class="topic-chip">Past BECE questions</div>
+          <div class="topic-chip">Exam techniques</div>
+        </div>
+        <div class="bece-strip">
+          <span style="font-size:20px">🏆</span>
+          <div class="bece-strip-text"><strong>BECE-focused:</strong> All sessions align with the Basic Education Certificate Examination syllabus.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCIENCE -->
+    <div class="subj-banner">
+      <div class="subj-banner-top" style="background:var(--cocoa)">
+        <div class="subj-emoji">🔬</div>
+        <div>
+          <div class="subj-banner-name">Integrated Science</div>
+          <div class="subj-banner-sub">Curiosity · Discovery · Understanding</div>
+        </div>
+      </div>
+      <div class="subj-banner-body">
+        <div class="grade-tabs">
+          <div class="grade-tab active" onclick="switchGrade('sci',1,this)">JHS 1</div>
+          <div class="grade-tab" onclick="switchGrade('sci',2,this)">JHS 2</div>
+          <div class="grade-tab" onclick="switchGrade('sci',3,this)">JHS 3</div>
+        </div>
+        <div class="topic-grid active" id="sci-1">
+          <div class="topic-chip">Scientific method</div>
+          <div class="topic-chip">Cell structure</div>
+          <div class="topic-chip">States of matter</div>
+          <div class="topic-chip">Plant parts &amp; functions</div>
+          <div class="topic-chip">The human skeleton</div>
+          <div class="topic-chip">Mixtures &amp; solutions</div>
+          <div class="topic-chip">Weather &amp; climate</div>
+          <div class="topic-chip">Forces &amp; motion</div>
+          <div class="topic-chip">Simple machines</div>
+          <div class="topic-chip">Environmental health</div>
+        </div>
+        <div class="topic-grid" id="sci-2">
+          <div class="topic-chip">Photosynthesis</div>
+          <div class="topic-chip">Digestive system</div>
+          <div class="topic-chip">Acids &amp; bases</div>
+          <div class="topic-chip">Periodic table basics</div>
+          <div class="topic-chip">Electricity — circuits</div>
+          <div class="topic-chip">Sound &amp; light</div>
+          <div class="topic-chip">Reproduction in plants</div>
+          <div class="topic-chip">Rocks &amp; minerals</div>
+          <div class="topic-chip">Pollution &amp; ecology</div>
+          <div class="topic-chip">Chemical changes</div>
+        </div>
+        <div class="topic-grid" id="sci-3">
+          <div class="topic-chip">Human reproduction</div>
+          <div class="topic-chip">Genetics — basics</div>
+          <div class="topic-chip">Chemical reactions</div>
+          <div class="topic-chip">Energy types</div>
+          <div class="topic-chip">Electromagnetic spectrum</div>
+          <div class="topic-chip">Ecosystems</div>
+          <div class="topic-chip">Atomic structure</div>
+          <div class="topic-chip">Newton's laws</div>
+          <div class="topic-chip">Past BECE questions</div>
+          <div class="topic-chip">Exam techniques</div>
+        </div>
+        <div class="bece-strip">
+          <span style="font-size:20px">🏆</span>
+          <div class="bece-strip-text"><strong>BECE-focused:</strong> All sessions align with the Basic Education Certificate Examination syllabus.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:var(--forest);padding:64px 5vw;text-align:center">
+  <div class="fade-up">
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:900;color:#fff;margin-bottom:0.75rem">Ready to start learning?</div>
+    <p style="font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:1.5rem">Sessions from ₵15/US$1.50. Online everywhere. In-person in Sunyani.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+       <a style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" href="https://wa.me/233535544354?text=Hi%2C%20I%27d%20like%20to%20book%20an%20TutorNoble%20session"
+   class="btn-gold" target="_blank">
+  Book on WhatsApp →
+</a>
+      <a href="#" class="btn-gold" onclick="openModal();return false">Book on website →</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div class="kente-strip"></div>
+<div id="site-modal"></div>
+<script src="../js/main.js?v=2"></script>
+<script src="../js/layout.js?v=2"></script>
+<script>
+injectLayout('../');
+function switchGrade(subj, num, tab) {
+  tab.parentNode.querySelectorAll('.grade-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  [1,2,3].forEach(n => {
+    const el = document.getElementById(subj+'-'+n);
+    if(el) el.className = 'topic-grid' + (n===num?' active':'');
+  });
+}
+</script>
+</body>
+</html>

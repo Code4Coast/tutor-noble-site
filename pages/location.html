@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In-person Sessions — TutorNoble</title>
+<meta name="description" content="TutorNoble in-person tutoring is available in Sunyani, Bono Region, Ghana. Book your spot today.">
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/modal.css">
+<style>
+.page-hero{background:var(--forest);padding:64px 5vw 72px;position:relative;overflow:hidden}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.1;margin-bottom:0.75rem}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.6);max-width:500px;line-height:1.7}
+
+.location-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.info-card{background:var(--warm-white);border:1.5px solid var(--border);border-radius:16px;overflow:hidden}
+.info-card-header{background:var(--forest);padding:1.25rem 1.5rem;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.07em}
+.info-row{display:flex;align-items:flex-start;gap:12px;padding:1rem 1.5rem;border-bottom:1px solid var(--border)}
+.info-row:last-child{border-bottom:none}
+.info-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.info-label{font-size:12px;color:var(--text-soft);margin-bottom:2px}
+.info-val{font-size:14px;font-weight:500;color:var(--text)}
+
+.map-placeholder{background:var(--forest);border-radius:16px;height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:2rem;border:1.5px solid rgba(255,255,255,0.08)}
+.map-pin-big{font-size:56px}
+.map-city-name{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;color:#fff}
+.map-region-name{font-size:14px;color:rgba(255,255,255,0.5)}
+.map-link{margin-top:1rem;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;display:inline-block;transition:background .2s;font-family:'Plus Jakarta Sans',sans-serif}
+.map-link:hover{background:rgba(255,255,255,0.18)}
+
+.restrict-banner{background:var(--gold-pale);border:1.5px solid var(--gold-light);border-radius:14px;padding:1.5rem;margin-bottom:2rem;display:flex;gap:14px;align-items:flex-start}
+.restrict-icon{font-size:28px;flex-shrink:0}
+.restrict-title{font-size:16px;font-weight:700;color:var(--cocoa);margin-bottom:4px}
+.restrict-text{font-size:14px;color:var(--text-mid);line-height:1.7}
+
+.online-cta{background:var(--mint-pale);border:1.5px solid var(--mint);border-radius:14px;padding:1.5rem;display:flex;gap:14px;align-items:flex-start;margin-top:1.5rem}
+.hours-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:0.5rem}
+.hour-row{background:var(--cream);border-radius:8px;padding:8px 12px;font-size:13px;color:var(--text-mid)}
+.hour-day{font-weight:600;color:var(--forest);font-size:12px;margin-bottom:2px}
+
+@media(max-width:768px){.location-grid{grid-template-columns:1fr}.hours-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="kente-strip"></div>
+<nav id="site-nav"></nav>
+
+<div class="page-hero">
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold-light);margin-bottom:0.75rem">In-person sessions</div>
+  <h1>Rooted in Sunyani,<br>Bono Region.</h1>
+  <p>Meet Tutor anywhere in Sunyani.</p>
+</div>
+
+<section style="background:var(--cream)">
+
+  <!-- RESTRICTION NOTICE -->
+  <div class="restrict-banner fade-up">
+    <div class="restrict-icon">📍</div>
+    <div>
+      <div class="restrict-title">In-person sessions — Sunyani only</div>
+      <div class="restrict-text">In-person sessions are only available to students in Sunyani. If you're outside Sunyani — no worries! All our sessions are also available <strong>online via Google Meet</strong> at the exact same price and quality.</div>
+    </div>
+  </div>
+
+  <div class="location-grid fade-up">
+    <div>
+      <div class="section-tag">Our location</div>
+      <div class="section-title" style="margin-bottom:1.5rem">Find us in Sunyani.</div>
+
+      <div class="info-card" style="margin-bottom:1.25rem">
+        <div class="info-card-header">📍 Address &amp; contact</div>
+        <div class="info-row">
+          <div class="info-icon">🏫</div>
+          <div>
+            <div class="info-label">Location</div>
+            <div class="info-val">Sunyani, Bono Region, Ghana</div>
+            <div style="font-size:12px;color:var(--text-soft);margin-top:2px">Exact address sent with booking confirmation</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-label">Phone / WhatsApp</div>
+            <div class="info-val">+233553118403/+233 53 554 4354</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">✉️</div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-val">nobleokyere36@gmail.com</div>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="info-card">
+        <div class="info-card-header">🕒 Session hours</div>
+        <div style="padding:1rem 1.5rem">
+          <div class="hours-grid">
+            <div class="hour-row"><div class="hour-day">Mon – Fri</div>10:00 AM – 6:00 PM</div>
+            <div class="hour-row"><div class="hour-day">Saturday</div>9:00 AM – 6:00 PM</div>
+            <div class="hour-row"><div class="hour-day">Sunday</div>10:00 AM – 4:00 PM</div>
+            <div class="hour-row"><div class="hour-day">Public holidays</div>By arrangement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="online-cta">
+        <div style="font-size:24px;flex-shrink:0">💻</div>
+        <div>
+          <div style="font-size:15px;font-weight:700;color:var(--forest);margin-bottom:4px">Outside Sunyani? Go online.</div>
+          <div style="font-size:14px;color:var(--text-soft);line-height:1.6">Same tutor. Same curriculum. Same price. Just open Google Meet from anywhere in Ghana or the world.</div>
+          <a href="#" class="btn-forest" style="margin-top:1rem;padding:10px 18px;font-size:13px;display:inline-block" onclick="openModal();return false">Book online session →</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="map-placeholder">
+        <div class="map-pin-big">📍</div>
+        <div class="map-city-name">Sunyani</div>
+        <div class="map-region-name">Bono Region · Ghana</div>
+        
+      </div>
+
+      <div style="background:var(--warm-white);border:1.5px solid var(--border);border-radius:14px;padding:1.5rem;margin-top:1.25rem">
+        <div style="font-size:15px;font-weight:700;color:var(--forest);margin-bottom:1rem">What to expect in-person</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-mid)"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✦</span>A quiet, distraction-free learning</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-mid)"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✦</span>One-on-one sessions — no class sharing</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-mid)"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✦</span>Progress notes shared with parents after each session</div>
+          <div style="display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--text-mid)"><span style="color:var(--gold);font-size:16px;flex-shrink:0">✦</span>Pay on arrival — cash or MTN MoMo accepted</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--forest);padding:60px 5vw;text-align:center">
+  <div class="fade-up">
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:900;color:#fff;margin-bottom:0.75rem">Book your in-person session.</div>
+    <p style="font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:1.5rem">Available in Sunyani. From ₵15/US$1.50 per session.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/233535544354?text=Hi%2C%20I%27d%20like%20to%20book%20an%20TutorNoble%20session"
+   class="btn-gold" target="_blank">
+  Book on WhatsApp →
+</a>
+      <a href="#" class="btn-gold" onclick="openModal();return false">Book on website →</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div class="kente-strip"></div>
+<div id="site-modal"></div>
+<script src="../js/main.js?v=2"></script>
+<script src="../js/layout.js?v=2"></script>
+<script>injectLayout('../');</script>
+</body>
+</html>

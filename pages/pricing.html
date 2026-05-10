@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — TutorNoble</title>
+<meta name="description" content="Simple, honest tutoring prices. From ₵15 per session. Bundles available.">
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/modal.css">
+<style>
+.page-hero{background:var(--forest);padding:64px 5vw 72px}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.1;margin-bottom:0.75rem}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.6);max-width:480px;line-height:1.7}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:2.5rem}
+.price-card{background:var(--warm-white);border:1.5px solid var(--border);border-radius:18px;padding:2rem 1.5rem;text-align:center;transition:border-color .2s,transform .2s;position:relative}
+.price-card:hover{border-color:var(--forest-light);transform:translateY(-3px)}
+.price-card.featured{border-color:var(--gold);background:var(--gold-pale)}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap}
+.price-label-sm{font-size:12px;font-weight:600;color:var(--text-soft);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem}
+.price-big{font-family:'Playfair Display',serif;font-size:42px;font-weight:900;color:var(--forest);line-height:1}
+.price-currency{font-size:24px;vertical-align:top;margin-top:8px;display:inline-block}
+.price-usd{font-size:13px;color:var(--text-soft);margin-top:6px}
+.price-divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0}
+.price-feature{font-size:13px;color:var(--text-mid);margin-bottom:7px;display:flex;align-items:center;gap:6px;text-align:left}
+.price-feature::before{content:'✓';color:var(--forest-light);font-weight:700;flex-shrink:0}
+.save-badge{display:inline-block;background:var(--forest);color:#fff;font-size:11px;font-weight:700;padding:4px 12px;border-radius:100px;margin-top:1rem}
+.book-price-btn{width:100%;margin-top:1.25rem;background:var(--forest);color:#fff;border:none;padding:12px;border-radius:10px;font-size:14px;font-weight:600;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:background .2s}
+.book-price-btn:hover{background:var(--forest-mid)}
+.book-price-btn.outline{background:transparent;color:var(--forest);border:1.5px solid var(--forest)}
+.book-price-btn.outline:hover{background:var(--mint-pale)}
+
+.compare-table{width:100%;border-collapse:collapse;margin-top:2.5rem;border-radius:12px;overflow:hidden;border:1.5px solid var(--border)}
+.compare-table th{background:var(--forest);color:#fff;padding:14px 16px;text-align:left;font-size:13px;font-weight:600}
+.compare-table td{padding:13px 16px;font-size:14px;border-bottom:1px solid var(--border);color:var(--text-mid)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table tr:nth-child(even) td{background:var(--cream)}
+.check{color:var(--forest-light);font-weight:700}
+.cross{color:#aaa}
+
+.faq-list{display:flex;flex-direction:column;gap:12px;margin-top:2rem}
+.faq-item{background:var(--warm-white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{padding:1rem 1.25rem;font-size:15px;font-weight:600;color:var(--forest);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.faq-arrow{font-size:18px;transition:transform .25s;color:var(--text-soft)}
+.faq-a{font-size:14px;color:var(--text-soft);line-height:1.7;padding:0 1.25rem;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.faq-item.open .faq-a{max-height:200px;padding:0 1.25rem 1rem}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+</style>
+</head>
+<body>
+<div class="kente-strip"></div>
+<nav id="site-nav"></nav>
+
+<div class="page-hero">
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold-light);margin-bottom:0.75rem">Pricing</div>
+  <h1>Simple, honest prices.<br>No surprises.</h1>
+  <p>Pay per session or save more with a bundle. No contracts, no hidden fees. Cancel anytime.</p>
+</div>
+
+<!-- PRICING CARDS -->
+<section style="background:var(--cream)">
+  <div class="fade-up">
+    <div class="section-tag">Sessions</div>
+    <div class="section-title">Pick what suits your child.</div>
+  </div>
+  <div class="pricing-grid fade-up">
+    <div class="price-card">
+      <div class="price-label-sm">30-minute session</div>
+      <div class="price-big"><span class="price-currency">₵</span>15</div>
+      <div class="price-usd">≈ $1.50 USD</div>
+      <hr class="price-divider">
+      <div class="price-feature">English or Science</div>
+      <div class="price-feature">Online or in-person</div>
+      <div class="price-feature">Perfect for quick revision</div>
+      <button class="book-price-btn outline" onclick="openModal()">Book this →</button>
+    </div>
+    <div class="price-card featured">
+      <div class="popular-badge">Most popular</div>
+      <div class="price-label-sm">1-hour session</div>
+      <div class="price-big"><span class="price-currency">₵</span>30</div>
+      <div class="price-usd">≈ $3.00 USD</div>
+      <hr class="price-divider">
+      <div class="price-feature">English or Science</div>
+      <div class="price-feature">Online or in-person</div>
+      <div class="price-feature">Deep-dive learning</div>
+      <button class="book-price-btn" onclick="openModal()">Book this →</button>
+    </div>
+    <div class="price-card">
+      <div class="price-label-sm">4-session bundle</div>
+      <div class="price-big"><span class="price-currency">₵</span>110</div>
+      <div class="price-usd">≈ $11.00 USD</div>
+      <hr class="price-divider">
+      <div class="price-feature">Mix subjects freely</div>
+      <div class="price-feature">Mix 30min &amp; 1hr</div>
+      <div class="price-feature">Valid for 30 days</div>
+      <div class="save-badge">Save ₵10</div>
+      <button class="book-price-btn" onclick="openModal()">Book this →</button>
+    </div>
+    <div class="price-card">
+      <div class="price-label-sm">8-session bundle</div>
+      <div class="price-big"><span class="price-currency">₵</span>210</div>
+      <div class="price-usd">≈ $21.00 USD</div>
+      <hr class="price-divider">
+      <div class="price-feature">Mix subjects freely</div>
+      <div class="price-feature">Mix 30min &amp; 1hr</div>
+      <div class="price-feature">Valid for 60 days</div>
+      <div class="save-badge">Save ₵30</div>
+      <button class="book-price-btn" onclick="openModal()">Book this →</button>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section style="background:var(--warm-white)">
+  <div class="fade-up">
+    <div class="section-tag">Compare</div>
+    <div class="section-title">What's included in each option.</div>
+  </div>
+  <div class="fade-up" style="overflow-x:auto">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>30 min — ₵15/US$1.50</th>
+          <th>1 hour — ₵30/US$3.00</th>
+          <th>Bundle — from ₵110</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>English Language</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Integrated Science</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Online (Google Meet)</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>In-person (Sunyani)</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>SMS + Email confirmation</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Pay during class option</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+        <tr><td>Mix subjects per session</td><td class="cross">–</td><td class="cross">–</td><td class="check">✓</td></tr>
+        <tr><td>Savings vs per-session</td><td class="cross">–</td><td class="cross">–</td><td class="check">₵10 – ₵30</td></tr>
+        <tr><td>Priority booking</td><td class="cross">–</td><td class="cross">–</td><td class="check">✓</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--cream)">
+  <div class="fade-up">
+    <div class="section-tag">Questions</div>
+    <div class="section-title">Pricing FAQ.</div>
+  </div>
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I pay during the class instead of before? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes — absolutely. When booking, simply select "Pay during class" and your spot is fully reserved. You settle with the tutor directly at the start of the session, cash or MoMo both welcome.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do bundle sessions expire? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">4-session bundles are valid for 30 days from purchase. 8-session bundles are valid for 60 days. If you need an extension for any reason, just contact us — we're flexible.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I mix English and Science in a bundle? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes! Bundle sessions can be split freely between English and Science across any grade level (JHS 1, 2 or 3). You can also mix 30-minute and 1-hour sessions within a bundle.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What if I need to cancel or reschedule? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">No problem — just contact us at least 3 hours before the session and we'll reschedule at no charge. Cancellations within 3 hours of the session may use one bundle credit.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are prices the same for online and in-person? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes — the same price applies whether you book online or in-person. T&Cs apply to in-person sessions.</div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--gold);padding:60px 5vw;text-align:center">
+  <div class="fade-up">
+    <div style="font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,38px);font-weight:900;color:var(--cocoa);margin-bottom:0.75rem">Start with just $3.</div>
+    <p style="font-size:15px;color:rgba(61,31,13,0.7);margin-bottom:1.5rem">No commitment. No contract. Just great tutoring.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+       <a style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" href="https://wa.me/233535544354?text=Hi%2C%20I%27d%20like%20to%20book%20an%20TutorNoble%20session"
+   class="btn-forest" target="_blank">
+  Book on WhatsApp →
+</a>
+      <a href="#" class="btn-forest" onclick="openModal();return false">Book on website →</a>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div class="kente-strip"></div>
+<div id="site-modal"></div>
+<script src="../js/main.js?v=2"></script>
+<script src="../js/layout.js?v=2"></script>
+<script>
+injectLayout('../');
+function toggleFaq(el) {
+  el.parentNode.classList.toggle('open');
+}
+</script>
+</body>
+</html>

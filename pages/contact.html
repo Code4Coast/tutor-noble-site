@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — TutorNoble</title>
+<meta name="description" content="Get in touch with TutorNoble. WhatsApp, email or fill in the form.">
+<link rel="stylesheet" href="../css/global.css">
+<link rel="stylesheet" href="../css/modal.css">
+<style>
+.page-hero{background:var(--forest);padding:64px 5vw 72px}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:900;color:#fff;letter-spacing:-1px;line-height:1.1;margin-bottom:0.75rem}
+.page-hero p{font-size:16px;color:rgba(255,255,255,0.6);max-width:480px;line-height:1.7}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-card{background:var(--warm-white);border:1.5px solid var(--border);border-radius:16px;padding:2rem}
+.contact-card-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--forest);margin-bottom:1.25rem}
+
+.channel-list{display:flex;flex-direction:column;gap:12px;margin-bottom:1.5rem}
+.channel{display:flex;align-items:center;gap:14px;padding:1rem 1.1rem;background:var(--cream);border-radius:12px;border:1px solid var(--border);text-decoration:none;transition:border-color .2s,transform .2s}
+.channel:hover{border-color:var(--forest-light);transform:translateX(3px)}
+.channel-icon{font-size:24px;flex-shrink:0}
+.channel-name{font-size:14px;font-weight:600;color:var(--forest)}
+.channel-detail{font-size:13px;color:var(--text-soft)}
+.channel-arrow{margin-left:auto;color:var(--text-soft);font-size:16px}
+
+.form-card{background:var(--warm-white);border:1.5px solid var(--border);border-radius:16px;padding:2rem}
+.send-btn{width:100%;padding:14px;background:var(--forest);color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;cursor:pointer;transition:background .2s;margin-top:.5rem}
+.send-btn:hover{background:var(--forest-mid)}
+
+.hours-card{background:var(--gold-pale);border:1.5px solid var(--gold-light);border-radius:14px;padding:1.25rem 1.5rem;margin-top:1.25rem}
+.hours-title{font-size:14px;font-weight:700;color:var(--cocoa);margin-bottom:.75rem}
+.hours-row{display:flex;justify-content:space-between;font-size:13px;color:var(--text-mid);padding:.35rem 0;border-bottom:1px solid rgba(0,0,0,0.06)}
+.hours-row:last-child{border-bottom:none}
+
+.success-banner{display:none;background:var(--mint-pale);border:1.5px solid var(--mint);border-radius:10px;padding:1rem 1.25rem;font-size:14px;color:var(--forest);text-align:center;margin-top:1rem}
+.success-banner.show{display:block}
+
+@media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="kente-strip"></div>
+<nav id="site-nav"></nav>
+
+<div class="page-hero">
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold-light);margin-bottom:0.75rem">Get in touch</div>
+  <h1>We're here<br>to help.</h1>
+  <p>Questions about a session, payment, or anything else? Reach us on WhatsApp, email, or fill in the form below.</p>
+</div>
+
+<section style="background:var(--cream)">
+  <div class="contact-grid fade-up">
+
+    <!-- LEFT: CHANNELS + HOURS -->
+    <div>
+      <div class="contact-card">
+        <div class="contact-card-title">Talk to us directly</div>
+        <div class="channel-list">
+          <a class="channel" href="https://wa.me/233535544354" target="_blank">
+            <div class="channel-icon">💬</div>
+            <div><div class="channel-name">WhatsApp (fastest)</div><div class="channel-detail">+233 53 554 4354 — usually replies in minutes</div></div>
+            <div class="channel-arrow">→</div>
+          </a>
+          <a class="channel" href="tel:+233535544354">
+            <div class="channel-icon">📞</div>
+            <div><div class="channel-name">Phone call</div><div class="channel-detail">+233553118403</div></div>
+            <div class="channel-arrow">→</div>
+          </a>
+          <a class="channel" href="mailto:nobleokyere36@gmail.com">
+            <div class="channel-icon">✉️</div>
+            <div><div class="channel-name">Email</div><div class="channel-detail">nobleokyere36@gmail.com</div></div>
+            <div class="channel-arrow">→</div>
+          </a>
+          <a class="channel" href="pages/location.html">
+            <div class="channel-icon">📍</div>
+            <div><div class="channel-name">In-person (Sunyani only)</div><div class="channel-detail">Sunyani, Bono Region, Ghana</div></div>
+            <div class="channel-arrow">→</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="hours-card">
+        <div class="hours-title">🕒 We're available</div>
+        <div class="hours-row"><span>Monday – Friday</span><span>10:00 AM – 6:00 PM</span></div>
+        <div class="hours-row"><span>Saturday</span><span>9:00 AM – 6:00 PM</span></div>
+        <div class="hours-row"><span>Sunday</span><span>10:00 AM – 6:00 PM</span></div>
+        <div class="hours-row"><span>WhatsApp responses</span><span>Usually within 1 hour</span></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: CONTACT FORM -->
+    <div class="form-card">
+      <div class="contact-card-title">Send us a message</div>
+      <div class="form-group">
+        <label class="form-label">Your name</label>
+        <input class="form-input" id="f-name" type="text" placeholder="e.g. Ama Mensah">
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label class="form-label">Phone number</label>
+          <input class="form-input" id="f-phone" type="tel" placeholder="024 XXX XXXX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" id="f-email" type="email" placeholder="ama@gmail.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Topic</label>
+        <select class="form-select" id="f-topic">
+          <option value="">Select a topic</option>
+          <option>Booking a session</option>
+          <option>Payment question</option>
+          <option>In-person session (Sunyani)</option>
+          <option>Online session</option>
+          <option>Curriculum question</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" id="f-message" rows="5" placeholder="How can we help you?"></textarea>
+      </div>
+      <button class="send-btn" onclick="sendMessage()">Send message →</button>
+      <div class="success-banner" id="success-banner">
+        ✅ Message sent! We'll get back to you within 1 hour on WhatsApp or email.
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="site-footer"></footer>
+<div class="kente-strip"></div>
+<div id="site-modal"></div>
+<script src="../js/main.js?v=2"></script>
+<script src="../js/layout.js?v=2"></script>
+<script>
+injectLayout('../');
+function sendMessage() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const msg = document.getElementById('f-message').value.trim();
+  if(!name||!email||!msg){ alert('Please fill in your name, email and message.'); return; }
+  document.getElementById('success-banner').classList.add('show');
+  document.getElementById('f-name').value='';
+  document.getElementById('f-phone').value='';
+  document.getElementById('f-email').value='';
+  document.getElementById('f-message').value='';
+}
+</script>
+</body>
+</html>
