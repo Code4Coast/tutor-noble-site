@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background in forest green -->
+  <rect width="32" height="32" fill="#0D3D2A"/>
+  
+  <!-- TN letters in gold -->
+  <text x="16" y="22" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#C07D2A" text-anchor="middle">TN</text>
+  
+  <!-- Small book icon above text -->
+  <g transform="translate(16, 8)">
+    <rect x="-6" y="-2" width="12" height="8" fill="#C07D2A" rx="1"/>
+    <rect x="-5" y="-1" width="10" height="6" fill="#F5DFA8" rx="0.5"/>
+    <line x1="-3" y1="1" x2="3" y2="1" stroke="#0D3D2A" stroke-width="0.5"/>
+    <line x1="-3" y1="3" x2="3" y2="3" stroke="#0D3D2A" stroke-width="0.5"/>
+  </g>
+</svg>

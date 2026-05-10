@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Forest green background -->
+  <rect width="32" height="32" fill="#0D3D2A"/>
+  
+  <!-- Kente pattern stripes -->
+  <rect x="0" y="0" width="32" height="4" fill="#C07D2A"/>
+  <rect x="0" y="4" width="32" height="4" fill="#8B1C1C"/>
+  <rect x="0" y="8" width="32" height="4" fill="#1A5C3E"/>
+  <rect x="0" y="28" width="32" height="4" fill="#F5DFA8"/>
+  
+  <!-- Central circle with TN -->
+  <circle cx="16" cy="16" r="10" fill="#0D3D2A" stroke="#C07D2A" stroke-width="2"/>
+  
+  <!-- TN letters -->
+  <text x="16" y="20" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#C07D2A" text-anchor="middle">TN</text>
+  
+  <!-- Small graduation cap icon -->
+  <g transform="translate(16, 10)">
+    <polygon points="-4,0 4,0 6,-2 -6,-2" fill="#C07D2A"/>
+    <rect x="-4" y="0" width="8" height="1" fill="#F5DFA8"/>
+    <line x1="0" y1="-2" x2="0" y2="2" stroke="#C07D2A" stroke-width="0.5"/>
+  </g>
+</svg>
