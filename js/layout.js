@@ -139,7 +139,7 @@ function injectLayout(base) {
           </div>
           <div class="form-group">
             <label class="form-label">Preferred date</label>
-            <input class="form-input" type="date">
+            <input class="form-input" type="date" data-field="date">
           </div>
         </div>
         <div class="form-group">

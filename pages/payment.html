@@ -279,12 +279,13 @@ function sendToWhatsApp() {
   const format = decodeURIComponent(params.get('format') || 'online');
   const location = decodeURIComponent(params.get('location') || 'ghana');
   const hours = parseFloat(params.get('hours')) || 1;
+  const date = decodeURIComponent(params.get('date') || '');
   const ref = 'EB-' + Math.random().toString(36).substring(2,8).toUpperCase();
   
   console.log('WhatsApp params:', { method, studentName, subject, grade, format, location, hours });
   
   // Create comprehensive WhatsApp message with all booking data
-  const whatsappMessage = `Hello TutorNoble! 📚\n\nI've made payment for a tutoring session:\n\n👤 Name: ${studentName}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${hours === 1 ? '1 hour' : `${hours} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n\n💳 Payment Details:\n💰 Amount: ₵${(hours * 30).toFixed(2)}\n💳 Method: ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}\n🔖 Reference: ${ref}\n\n📸 I will send my payment confirmation screenshot to verify the payment.\n\nPlease confirm my booking and send the meeting details. Thank you!`;
+  const whatsappMessage = `Hello TutorNoble! 📚\n\nI've made payment for a tutoring session:\n\n👤 Name: ${studentName}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${hours === 1 ? '1 hour' : `${hours} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n📅 Preferred Date: ${date ? new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Not specified'}\n\n💳 Payment Details:\n💰 Amount: ₵${(hours * 30).toFixed(2)}\n💳 Method: ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}\n🔖 Reference: ${ref}\n\n📸 I will send my payment confirmation screenshot to verify the payment.\n\nPlease confirm my booking and send the meeting details. Thank you!`;
   
   console.log('WhatsApp message:', whatsappMessage);
   
@@ -307,6 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const format = decodeURIComponent(params.get('format') || 'online');
   const location = decodeURIComponent(params.get('location') || 'ghana');
   const hours = parseFloat(params.get('hours')) || 1;
+  const date = decodeURIComponent(params.get('date') || '');
   const ref = 'EB-' + Math.random().toString(36).substring(2,8).toUpperCase();
   
   console.log('Payment params:', { method, studentName, subject, grade, format, location, hours });
@@ -451,7 +453,7 @@ function submitConfirm() {
   
   // After showing success, redirect to WhatsApp after a delay
   setTimeout(() => {
-    const whatsappMessage = `Hello TutorNoble! 📚\n\nI've completed my payment for a tutoring session:\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${hours === 1 ? '1 hour' : `${hours} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n💳 Payment: ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}\n💰 Amount: ₵${(hours * 30).toFixed(2)}\n🔖 Reference: ${ref}\n📋 Transaction ID: ${txn}\n${notes ? '\n📝 Notes: ' + notes : ''}\n\nPlease confirm and send the meeting details. Thank you!`;
+    const whatsappMessage = `Hello TutorNoble! 📚\n\nI've completed my payment for a tutoring session:\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${hours === 1 ? '1 hour' : `${hours} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n� Preferred Date: ${date ? new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Not specified'}\n�💳 Payment: ${method === 'bank' ? 'Bank Transfer' : 'MTN MoMo'}\n💰 Amount: ₵${(hours * 30).toFixed(2)}\n🔖 Reference: ${ref}\n📋 Transaction ID: ${txn}\n${notes ? '\n📝 Notes: ' + notes : ''}\n\nPlease confirm and send the meeting details. Thank you!`;
     
     const whatsappUrl = `https://wa.me/233535544354?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');

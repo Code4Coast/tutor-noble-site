@@ -144,6 +144,7 @@ function submitBooking() {
   const grade = document.querySelector('#modal [data-field="grade"]')?.value || 'JHS 1';
   const format = document.querySelector('#modal [data-field="format"]')?.value || 'online';
   const location = document.getElementById('student-location')?.value || 'ghana';
+  const date = document.querySelector('#modal [data-field="date"]')?.value || '';
   
   if (!name || !phone || !email) {
     alert('Please fill in your name, phone, and email to continue.');
@@ -155,13 +156,13 @@ function submitBooking() {
   
   if (selectedPayChoice === 'during') {
     // Pay during class - go directly to WhatsApp
-    const whatsappMessage = `Hello TutorNoble! 📚\n\nI would like to book a tutoring session:\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${sessionLength === '1' ? '1 hour' : sessionLength === '0.5' ? '30 minutes' : `${sessionLength} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n💳 Payment: Pay during class\n\nPlease let me know the next steps. Thank you!`;
+    const whatsappMessage = `Hello TutorNoble! 📚\n\nI would like to book a tutoring session:\n\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n📚 Subject: ${subject}\n📈 Grade: ${grade}\n⏱ Duration: ${sessionLength === '1' ? '1 hour' : sessionLength === '0.5' ? '30 minutes' : `${sessionLength} hours`}\n🌐 Format: ${format === 'online' ? 'Online' : 'In-person'}\n📍 Location: ${location === 'ghana' ? 'Ghana' : 'International'}\n� Preferred Date: ${date ? new Date(date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : 'Not specified'}\n� Payment: Pay during class\n\nPlease let me know the next steps. Thank you!`;
     
     const whatsappUrl = `https://wa.me/233535544354?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, '_blank');
   } else {
     // MoMo or Bank payment - go to payment page
-    const paymentUrl = `pages/payment.html?method=${selectedPayChoice}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}&subject=${encodeURIComponent(subject)}&grade=${encodeURIComponent(grade)}&format=${encodeURIComponent(format)}&location=${encodeURIComponent(location)}&hours=${encodeURIComponent(sessionLength)}`;
+    const paymentUrl = `pages/payment.html?method=${selectedPayChoice}&name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&email=${encodeURIComponent(email)}&subject=${encodeURIComponent(subject)}&grade=${encodeURIComponent(grade)}&format=${encodeURIComponent(format)}&location=${encodeURIComponent(location)}&hours=${encodeURIComponent(sessionLength)}&date=${encodeURIComponent(date)}`;
     window.location.href = paymentUrl;
   }
 }
