@@ -13,8 +13,8 @@ button:hover { background: #1A5C3E; }
 </head>
 <body>
 <div class="container">
-<h1>TutorNoble Social Media Image Generator</h1>
-<p>Creates a 1200x630px image for WhatsApp/Facebook sharing</p>
+<h1>TutorNoble Minimal Social Image Generator</h1>
+<p>Creates a modern, minimal 1200x630px image for WhatsApp/Facebook sharing</p>
 
 <div class="controls">
 <button onclick="generateImage()">Generate Social Image</button>
@@ -29,91 +29,81 @@ const canvas = document.getElementById('socialCanvas');
 const ctx = canvas.getContext('2d');
 
 function generateImage() {
-    // Background with gradient
-    const gradient = ctx.createLinearGradient(0, 0, 0, 630);
-    gradient.addColorStop(0, '#0D3D2A');
-    gradient.addColorStop(1, '#1A5C3E');
-    ctx.fillStyle = gradient;
+    // Clean minimal background
+    ctx.fillStyle = '#F9F5EE'; // Cream background
     ctx.fillRect(0, 0, 1200, 630);
     
-    // Kente pattern stripes
-    ctx.fillStyle = '#C07D2A';
-    ctx.fillRect(0, 0, 1200, 20);
-    ctx.fillRect(0, 610, 1200, 20);
-    
-    ctx.fillStyle = '#8B1C1C';
-    ctx.fillRect(0, 20, 1200, 15);
-    ctx.fillRect(0, 595, 1200, 15);
-    
-    // Main content area
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
-    ctx.roundRect(60, 100, 1080, 430, 20);
-    ctx.fill();
-    
-    // Logo/Brand area
+    // Subtle forest green accent bar
     ctx.fillStyle = '#0D3D2A';
-    ctx.font = 'bold 48px Playfair Display';
+    ctx.fillRect(0, 0, 1200, 8);
+    ctx.fillRect(0, 622, 1200, 8);
+    
+    // Center content area with subtle shadow
+    ctx.fillStyle = 'rgba(13, 61, 42, 0.03)';
+    ctx.fillRect(100, 80, 1000, 470);
+    
+    // Main brand - centered and clean
+    ctx.fillStyle = '#0D3D2A';
+    ctx.font = 'bold 64px Playfair Display';
     ctx.textAlign = 'center';
-    ctx.fillText('TutorNoble', 600, 180);
+    ctx.fillText('TutorNoble', 600, 200);
     
-    // Tagline
+    // Minimal tagline
     ctx.fillStyle = '#C07D2A';
-    ctx.font = '32px Playfair Display';
-    ctx.fillText('Learn. Grow. Shine.', 600, 220);
+    ctx.font = 'italic 28px Playfair Display';
+    ctx.fillText('Learn. Grow. Shine.', 600, 240);
     
-    // Main message
-    ctx.fillStyle = '#1A1208';
-    ctx.font = '24px Plus Jakarta Sans';
-    ctx.fillText('Expert English & Science Tutoring', 600, 280);
-    ctx.fillText('for JHS 1–3 Students in Ghana', 600, 310);
+    // Clean separator line
+    ctx.strokeStyle = '#E0D5C5';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(300, 280);
+    ctx.lineTo(900, 280);
+    ctx.stroke();
     
-    // Features
-    ctx.font = '20px Plus Jakarta Sans';
+    // Core services - minimal text
     ctx.fillStyle = '#4A3728';
-    ctx.fillText('🌐 Online Everywhere | 📍 In-person Sunyani', 600, 360);
-    ctx.fillText('💰 From ₵15 per session | 📚 Professional Tutors', 600, 390);
+    ctx.font = '22px Plus Jakarta Sans';
+    ctx.fillText('English & Science Tutoring', 600, 330);
     
-    // Call to action
+    ctx.fillStyle = '#7A6858';
+    ctx.font = '18px Plus Jakarta Sans';
+    ctx.fillText('JHS 1–3 • Online & In-Person', 600, 360);
+    
+    // Location and pricing
+    ctx.fillStyle = '#7A6858';
+    ctx.font = '16px Plus Jakarta Sans';
+    ctx.fillText('Sunyani, Ghana • From ₵15/session', 600, 400);
+    
+    // Clean call to action
     ctx.fillStyle = '#0D3D2A';
-    ctx.font = 'bold 28px Plus Jakarta Sans';
-    ctx.fillText('Book Your Session Today!', 600, 450);
+    ctx.fillRect(400, 440, 400, 60);
     
-    // Website
+    ctx.fillStyle = '#F9F5EE';
+    ctx.font = 'bold 20px Plus Jakarta Sans';
+    ctx.fillText('Book Now', 600, 478);
+    
+    // Website URL - minimal
     ctx.fillStyle = '#C07D2A';
-    ctx.font = '20px Plus Jakarta Sans';
-    ctx.fillText('tutor-noble.netlify.app', 600, 490);
+    ctx.font = '16px Plus Jakarta Sans';
+    ctx.fillText('tutor-noble.netlify.app', 600, 540);
     
-    // Decorative elements
+    // Subtle brand element - small circle
     ctx.fillStyle = '#C07D2A';
     ctx.beginPath();
-    ctx.arc(100, 315, 40, 0, Math.PI * 2);
+    ctx.arc(120, 120, 25, 0, Math.PI * 2);
     ctx.fill();
     
-    ctx.fillStyle = '#F5DFA8';
+    ctx.fillStyle = '#F9F5EE';
     ctx.beginPath();
-    ctx.arc(100, 315, 30, 0, Math.PI * 2);
+    ctx.arc(120, 120, 18, 0, Math.PI * 2);
     ctx.fill();
     
+    // TN letters in circle
     ctx.fillStyle = '#0D3D2A';
-    ctx.font = 'bold 24px Arial';
+    ctx.font = 'bold 16px Arial';
     ctx.textAlign = 'center';
-    ctx.fillText('TN', 100, 325);
-    
-    // Right side decoration
-    ctx.fillStyle = '#C07D2A';
-    ctx.beginPath();
-    ctx.arc(1100, 315, 40, 0, Math.PI * 2);
-    ctx.fill();
-    
-    ctx.fillStyle = '#F5DFA8';
-    ctx.beginPath();
-    ctx.arc(1100, 315, 30, 0, Math.PI * 2);
-    ctx.fill();
-    
-    // Graduation cap icon
-    ctx.fillStyle = '#0D3D2A';
-    ctx.font = '30px Arial';
-    ctx.fillText('🎓', 1100, 325);
+    ctx.fillText('TN', 120, 126);
 }
 
 function downloadImage() {
