@@ -1,8 +1,8 @@
-# TutorNoble — Learn. Grow. Shine.
+# TutorNoble — Learn.
 
 🌐 **Live Site:** [https://tutor-noble.netlify.app/](https://tutor-noble.netlify.app/)
 
-Expert English and Science tutoring for JHS 1–3 students in Ghana. Online everywhere, in-person in Sunyani. From ₵15 per session.
+Expert English and Science tutoring for JHS 1–3 students in Ghana. Online everywhere, in-person in Sunyani. From $3 per session.
 
 ## 📚 About TutorNoble
 
@@ -34,7 +34,7 @@ TutorNoble provides professional tutoring services for Junior High School studen
 
 ## 🎯 Features
 
-- **Professional Tutors** - Experienced and qualified
+- **Professional Tutor** - Experienced and qualified
 - **Flexible Scheduling** - Book sessions that fit your schedule
 - **Affordable Rates** - Starting from ₵15 per session
 - **Multiple Subjects** - English and Integrated Science
@@ -113,45 +113,7 @@ TutorNoble/
 └── README.md              # This file
 ```
 
-## 🚀 Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Code4Coast/tutor-noble-site.git
-   ```
-
-2. **Navigate to project**
-   ```bash
-   cd tutor-noble-site
-   ```
-
-3. **Open in browser**
-   ```bash
-   # Simply open index.html in your browser
-   # Or use a local server for development
-   python -m http.server 8000
-   ```
-
-## 📱 Social Sharing
-
-When sharing TutorNoble links on WhatsApp, Facebook, or Twitter, users will see:
-- 📱 **Custom preview image** with branding
-- 📝 **Professional description** of services
-- 🎯 **Clear call-to-action** to visit site
-- 🌐 **Correct website URL** for easy access
-
-## 🔧 Development Tools
-
-### Debug Tools
-- `debug-social.html` - Test Open Graph tags and social media previews
-- `social-image-generator.html` - Create custom social sharing images
-- `favicon-base64.html` - Generate favicon files
-
-### Browser Testing
-- ✅ Chrome, Firefox, Safari, Edge
-- ✅ Mobile Safari, Chrome Mobile
-- ✅ WhatsApp Web, WhatsApp Mobile
-- ✅ Facebook, Twitter sharing
 
 ## 📄 License
 
